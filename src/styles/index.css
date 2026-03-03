@@ -6,7 +6,7 @@
 
 body {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: radial-gradient(circle, #fdfdfd 0%, #e0e0e0 100%);
+  background: radial-gradient(circle, #fdfdfd 0%, #e0e0e0 100%);
   color: #333;
   display: flex;
   justify-content: center;
