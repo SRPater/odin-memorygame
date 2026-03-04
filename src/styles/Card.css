@@ -12,18 +12,18 @@
   width: 100%;
 }
 
-@media (hover: hover) {
+.card img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+@media (min-width: 601px) {
   .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     border-color: #3b4cca;
   }
-}
-
-.card img {
-  width: 90%;
-  height: 90%;
-  object-fit: contain;
 }
 
 @media (max-widht: 600px) {
