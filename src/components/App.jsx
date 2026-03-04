@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from './Header';
 import CardGrid from './CardGrid';
+import Modal from './Modal';
 import '../styles/App.css';
 
 function App() {
@@ -8,6 +9,15 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [cards, setCards] = useState([]);
   const [clickedIds, setClickedIds] = useState([]);
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    onConfirm: null,
+    onCancel: null,
+    confirmText: '',
+    cancelText: '',
+  });
 
   const fetchPokemon = async () => {
     const randomIds = [];
@@ -39,6 +49,7 @@ function App() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchPokemon();
   }, []);
 
@@ -53,25 +64,46 @@ function App() {
     return shuffled;
   }
 
+  const closeModal = () => {
+    setModalConfig((prev) => ({ ...prev, isOpen: false }));
+  };
+
+  const startNewGame = () => {
+    setBestScore(0);
+    setScore(0);
+    setClickedIds([]);
+    fetchPokemon();
+    closeModal();
+  };
+
+  const openHowToPlay = () => {
+    setModalConfig({
+      isOpen: true,
+      title: 'How to Play',
+      message: 'Get points by clicking on an image, but don\'t click on ' +
+        'any more than once!',
+      onConfirm: closeModal,
+      confirmText: 'Got it!',
+    });
+  };
+
   const handleCardClick = (id) => {
     if (clickedIds.includes(id)) {
-      setTimeout(() => {
-        const resetNewGame = window.confirm(
-          "Game over! You already clicked that one. Press OK to reset " +
-          "everything and get new Pokémon.\nPress Cancel to try again with " +
-          "the same set."
-        );
-
-        if (resetNewGame) {
-          setBestScore(0);
-          fetchPokemon();
-        } else {
+      setModalConfig({
+        isOpen: true,
+        title: 'Game Over!',
+        message: 'You already clicked that one. Would you like to try again ' +
+          'with the same Pokémon or reset everything?',
+        confirmText: 'Reset Game',
+        cancelText: 'Retry',
+        onConfirm: startNewGame,
+        onCancel: () => {
           setCards(shuffleArray(cards));
-        }
-
-        setScore(0);
-        setClickedIds([]);
-      }, 100);
+          setScore(0);
+          setClickedIds([]);
+          closeModal();
+        },
+      });
     } else {
       const newScore = score + 1;
       setScore(newScore);
@@ -82,16 +114,14 @@ function App() {
       }
 
       if (newScore === 12) {
-        setTimeout(() => {
-          alert(
-            "Congratulations! You've mastered the memory game! Starting a " +
-            "new game with fresh Pokémon now."
-          );
-          setScore(0);
-          setBestScore(0);
-          setClickedIds([]);
-          fetchPokemon();
-        }, 100);
+        setModalConfig({
+          isOpen: true,
+          title: 'You Won!',
+          message: 'Congratulations! You\'ve mastered the memory game. Ready ' +
+            'for a new set of Pokémon?',
+          confirmText: 'Play Again',
+          onConfirm: startNewGame,
+        });
       } else {
         setCards(shuffleArray(cards));
       }
@@ -100,8 +130,17 @@ function App() {
 
   return (
     <div className="app-container">
-      <Header score={score} bestScore={bestScore} />
+      <Header score={score} bestScore={bestScore} onHowToPlay={openHowToPlay} />
       <CardGrid cards={cards} onCardClick={handleCardClick} />
+      <Modal
+        isOpen={modalConfig.isOpen}
+        title={modalConfig.title}
+        message={modalConfig.message}
+        onConfirm={modalConfig.onConfirm}
+        onCancel={modalConfig.onCancel}
+        confirmText={modalConfig.confirmText}
+        cancelText={modalConfig.cancelText}
+      />
     </div>
   );
 }
