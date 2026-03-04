@@ -8,3 +8,12 @@
   width: 100%;
   max-width: 1100px;
 }
+
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 12px;
+    padding: 1rem;
+  }
+}

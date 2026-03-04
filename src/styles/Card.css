@@ -23,3 +23,16 @@
   height: 90%;
   object-fit: contain;
 }
+
+@media (max-widht: 600px) {
+  .card {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border-width: 1.5px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+}
