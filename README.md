@@ -1,16 +1,34 @@
-# React + Vite
+# Pokémon Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A polished, React-based memory game where players must click on unique Pokémon without selecting the same one twice. Built with Vite and the PokéAPI as part of the [The Odin Project](https://theodinproject.com) curriculum.
 
-Currently, two official plugins are available:
+## 🎮 How to Play
+1. Click any Pokémon card to earn a point.
+2. After every click, the board shuffles.
+3. **The Challenge:** Do not click the same Pokémon more than once!
+4. If you click a duplicate, the game ends. If you click all 12 unique Pokémon, you win!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+* **Live Data:** Fetches random Pokémon data and high-resolution official artwork from the [PokéAPI](https://pokeapi.co/).
+* **Custom Modal System:** Replaces native browser alerts with a cohesive, state-driven modal UI for game instructions, wins, and losses.
+* **Intelligent Shuffling:** Uses the Fisher-Yates shuffle algorithm to ensure the board is randomized after every move.
+* **Retry vs. Reset:** Players can choose to "Retry" (reshuffle the same 12 Pokémon) or "Reset" (fetch a brand new set from the API).
+* **Score Tracking:** Real-time score updates and persistent "Best Score" tracking during your session.
 
-## React Compiler
+## 🛠️ Tech Stack
+* **React** (Functional Components & Hooks)
+* **Vite** (Build Tool)
+* **CSS3** (Custom animations and responsive grid layout)
+* **PokéAPI** (External REST API)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Getting Started
+1. **Fork the repository:**
+   Click the "Fork" button at the top right of this page to create your own copy of the project.
+2. **Clone your fork:**
+   `git clone [https://github.com/your-username/odin-memorygame.git](https://github.com/your-username/pokemon-memory-game.git)`
+3. **Install dependencies:**
+   `npm install`
+4. **Run the development server:**
+   `npm run dev`
+5. **Build for production:**
+   `npm run build`
