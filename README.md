@@ -25,7 +25,7 @@ A polished, React-based memory game where players must click on unique Pokémon 
 1. **Fork the repository:**
    Click the "Fork" button at the top right of this page to create your own copy of the project.
 2. **Clone your fork:**
-   `git clone [https://github.com/your-username/odin-memorygame.git](https://github.com/your-username/pokemon-memory-game.git)`
+   `git clone https://github.com/your-username/odin-memorygame.git`
 3. **Install dependencies:**
    `npm install`
 4. **Run the development server:**
